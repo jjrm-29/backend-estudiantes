@@ -4,6 +4,7 @@ import cors from 'cors';
 
 // Importar las rutas
 import rutasCategorias from './src/routes/categorias.routes.js';
+import rutasCLientes from './src/routes/clientes.js';
 
 // Crear la aplicacion de express
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true}));
 
 // Rutas
 app.use('/api', rutasCategorias);
+app.use('/api', rutasCLientes);
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
