@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { obtenerCompras, obtenercompra, registrarCompra, eliminarCompra, actualizarCompraPatch } from '../controllers/compras.controller.js';
+import { obtenerCompras, obtenercompra, registrarCompra, eliminarCompra, actualizarCompraPatch } from '../controllers/compras.controllers.js';
 
 const router = Router();
 
