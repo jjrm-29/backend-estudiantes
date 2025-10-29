@@ -1,9 +1,20 @@
 import { Router } from 'express';
-import {  eliminarventa} from '../controllers/categorias.controllers.js';
+import { obtenerVentas, obtenerventa, registrarVenta, eliminarVenta, actualizarventasPatch } from '../controllers/ventas.controller.js';
 
 const router = Router();
-// Ruta para eliminar una categoria por su ID
-router.delete('/eliminarventas/:ID_categoria', eliminarventa)
+
+router.get('/ventas', obtenerVentas);
 
 // Rutas
+router.get('/ventas/:id_venta', obtenerventa);
+
+// Ruta para registrar una nueva venta
+router.post('/registrarVenta', registrarVenta);
+
+//Rutas
+router.delete('/eliminarVenta/:id_venta', eliminarVenta);
+
+// Ruta para actualizar una Venta por su ID
+router.patch('/actualizarventasPatch/:id_venta', actualizarventasPatch);
+
 export default router;
