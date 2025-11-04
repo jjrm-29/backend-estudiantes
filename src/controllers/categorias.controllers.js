@@ -50,27 +50,49 @@ export const registrarCategoria = async (req, res) => {
   }
 };
 
-
-  // Eliminar una categoría por su ID
-export const eliminarCategoria = async (req, res) => {
+// Actualizar una categoría existente
+export const actualizarCategoria = async (req, res) => {
   try {
     const id_categoria = req.params.id_categoria;
-    const [result] = await pool.query('DELETE FROM categorias WHERE id_categoria = ?', [id_categoria]);
-
+    const { nombre_categoria, descripcion_categoria } = req.body;
+    const [result] = await pool.query(
+      'UPDATE categorias SET nombre_categoria = ?, descripcion_categoria = ? WHERE id_categoria = ?',
+      [nombre_categoria, descripcion_categoria, id_categoria]
+    );
     if (result.affectedRows === 0) {
-      return res.status(404).json({ 
-        mensaje: 'Error al eliminar la categoria. El ID ${id_categoria} no fue encontrada'
-       });
-      }
-
-  // Respuestas sin contenido para indicar exito
-   res.status(204).sed();
-    }catch (error) {
-      return res.status(500).json({
-        mensaje: 'Ha ocurrido un error al eliminar una categoría.',
-        error: error
+      return res.status(404).json({
+        mensaje: 'Error al actualizar la categoria. El ID ${id_categoria} no fue encontrada'
       });
     }
+    res.status(204).send();
+  } catch (error) {
+    return res.status(500).json({
+      mensaje: 'Ha ocurrido un error al actualizar la categoría.',
+      error: error
+    });
   }
+};
+
+// Eliminar una categoría por su ID
+export const eliminarCategoria = async (req, res) => {
+  try { 
+    const id_categoria = req.params.id_categoria;
+    const [result] = await pool.query(
+      'DELETE FROM categorias WHERE id_categoria = ?',  
+      [id_categoria]
+    );  
+    if (result.affectedRows === 0) {
+      return res.status(404).json({
+        mensaje: 'Error al eliminar la categoría. El ID ${id_categoria} no fue encontrada'
+      });
+    } 
+    res.status(204).send();
+  } catch (error) {
+    return res.status(500).json({
+      mensaje: 'Ha ocurrido un error al eliminar la categoría.',  
+      error: error
+    });
+  }
+};
 
 
