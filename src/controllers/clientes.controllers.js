@@ -49,22 +49,44 @@ export const registrarCliente = async (req, res) => {
     }
 };
 
-// Eliminar una categoria
-
-export const eliminarCliente = async (req,res) => {
-    try{
-        const id_categoria = req.params.id_categoria;
-        const [result] =await pool.query('DELETE FROM clientes WHERE id_cliente = ?', [id_cliente]);
-
-        if (result.affectedRows === 0){
-            return res.status(404).json({
-                mensaje: 'Error al eliminar la cliente. el id ${id_cliente} No fue encontrada.'
+// Actualizar un cliente
+export const actualizarCliente = async (req, res) => {
+    try {
+        const id_cliente = req.params.id_cliente;
+        const {primer_nombre , segundo_nombre, primer_apellido, segundo_apellido, celular, direccion, cedula } = req.body;
+        const [result] = await pool.query(
+            'UPDATE clientes SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, celular = ?, direccion = ?, cedula = ? WHERE id_cliente = ?',
+            [primer_nombre , segundo_nombre, primer_apellido, segundo_apellido, celular, direccion, cedula, id_cliente]
+        );
+        if (result.affectedRows === 0) {
+            return  res.status(404).json({
+                mensaje: 'Error al actualizar la cliente. el id ${id_cliente} No fue encontrada.'
             });
         }
-        res.status(204).send();
-    }catch (error) {
+        res.json({ mensaje: 'Cliente actualizado correctamente.' });
+    } catch (error) {
         return res.status(500).json({
-            mensaje: 'Ha ocurrido un error al eliminar la cliente.',
+            mensaje: 'Ha ocurrido un error al actualizar la cliente.',
+            error: error
+        });
+    }
+};
+
+// Eliminar un cliente
+
+export const eliminarCliente = async (req, res) => {
+    try {
+        const id_cliente = req.params.id_cliente;   
+        const [result] = await pool.query('DELETE FROM clientes WHERE id_cliente = ?', [id_cliente]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                mensaje: 'Error al eliminar el cliente. ID ${id_cliente} no encontrado.'
+            });
+        }
+        res.json({ mensaje: 'Cliente eliminado correctamente.' });
+    } catch (error) {
+        return res.status(500).json({
+            mensaje: 'Ha ocurrido un error al eliminar el cliente.',
             error: error
         });
     }
