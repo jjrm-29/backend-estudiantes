@@ -72,7 +72,7 @@ export const eliminarProducto = async (req, res) =>  {
 };
 
 // Controlador para actualizar parcialmente una Productos por su ID
-export const actualizarProductosPatch = async (req, res) => {
+export const actualizarProductos = async (req, res) => {
   try {
     const { id_producto } = req.params;
     const datos = req.body;
