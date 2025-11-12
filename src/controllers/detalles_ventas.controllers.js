@@ -1,7 +1,7 @@
 import { pool } from '../../db_connection.js';
 
-// Obtener todas las categorías
-export const obtenerDetallesVentas = async (req, res) => {
+// Obtener todas las detalles_ventas
+export const obtenerDetalles_Ventas = async (req, res) => {
   try {
     const [result] = await pool.query('SELECT * FROM detalles_ventas');
     res.json(result);
@@ -13,9 +13,8 @@ export const obtenerDetallesVentas = async (req, res) => {
   }
 };
 
-
-// Obtener una compra por su ID
-export const obtenerDetalles_ventas = async (req, res) => {
+// Obtener una detalle_venta por su ID
+export const obtenerDetallesventas = async (req, res) => {
   try {
     const id_detalle_venta = req.params.id_detalle_venta;
     const [result] = await pool.query('SELECT * FROM detalles_ventas WHERE id_detalle_venta= ?', [req.params.id_detalle_venta])

@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { obtenerDetallesVentas, obtenerDetalles_ventas, registrarDetalles_Ventas, eliminardetalle_venta, actualizardetalle_ventaPatch } from '../controllers/detalles_ventas.controllers.js';
+import { obtenerDetalles_Ventas, obtenerDetallesventas, registrarDetalles_Ventas, eliminardetalle_venta, actualizardetalle_ventaPatch } from '../controllers/detalles_ventas.controllers.js';
 
 const router = Router();
 
-router.get('/detallesventas', obtenerDetallesVentas);
+// Rutas para obtener todas las detalles_ventas
+router.get('/detallesventas', obtenerDetalles_Ventas);
 
 // Rutas
-router.get('/detallesventas/:id_detalle_venta', obtenerDetalles_ventas);
+router.get('/detallesventas/:id_detalle_venta', obtenerDetallesventas);
 
 // Ruta para registrar una nueva detallesventas
 router.post('/registrarDetalles_Ventas', registrarDetalles_Ventas);
