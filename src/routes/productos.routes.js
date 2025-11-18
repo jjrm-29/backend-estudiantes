@@ -9,7 +9,7 @@ router.get('/productos', obtenerProductos);
 router.get('/productos/:id_producto', obtenerProducto);
 
 // Ruta para registrar una nueva Empleado
-router.post('/registrarProducto', registrarProducto);
+router.post('/Productos', registrarProducto);
 
 //Rutas
 router.delete('/eliminarProducto/:id_producto', eliminarProducto);

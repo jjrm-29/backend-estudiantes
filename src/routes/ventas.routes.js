@@ -3,7 +3,7 @@ import { obtenerVentas, obtenerventa, registrarVenta, eliminarVenta, actualizarv
 
 const router = Router();
 
-router.get('/ventas', obtenerVentas);
+router.get('/Ventas', obtenerVentas);
 
 // Rutas
 router.get('/ventas/:id_venta', obtenerventa);
